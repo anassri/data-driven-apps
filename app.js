@@ -1,16 +1,16 @@
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const routes = require('./routes');
 
 const app = express();
 
 app.set('view engine', 'pug');
-
 app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(routes);
-
-
 
 app.use((req, res, next) => {
     const err = new Error('The requrested page couldn\'t be found.');
@@ -47,7 +47,5 @@ app.use((err, req, res, next) => {
         stack: isProduction ? null : err.stack,
     });
 });
-
-//testing pull
 
 module.exports = app;
