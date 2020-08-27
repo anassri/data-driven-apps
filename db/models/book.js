@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {});
-  Book.associate = function(models) {
+  Book.associate = function (models) {
     // associations can be defined here
   };
   return Book;
